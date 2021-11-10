@@ -5,8 +5,8 @@
     android:layout_width="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
 
-    android:paddingBottom="26dp"
-    android:paddingTop="26dp"
+    android:paddingBottom="8dp"
+    android:paddingTop="8dp"
     xmlns:android="http://schemas.android.com/apk/res/android">
 
 
@@ -15,6 +15,8 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="30dp"
         android:layout_width="wrap_content"
+        android:textSize="16sp"
+        android:textStyle="bold"
         android:text="@{lfs.abbreviation}"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -27,17 +29,7 @@
         app:layout_constraintStart_toStartOf="@+id/tv_abbreviation"
         app:layout_constraintTop_toBottomOf="@+id/tv_abbreviation" />
 
-    <ProgressBar
-        style="@style/Base.Widget.AppCompat.ProgressBar"
-        android:id="@+id/photo_progress_bar"
-        android:layout_centerInParent="true"
-        android:layout_height="wrap_content"
-        android:layout_width="wrap_content"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

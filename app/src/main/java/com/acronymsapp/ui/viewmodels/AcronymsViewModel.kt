@@ -11,6 +11,7 @@ import retrofit2.Response
 
 class AcronymsViewModel : ViewModel() {
     var acronyms : MutableLiveData<List<LFS>?> = MutableLiveData()
+    var isLoading = MutableLiveData<Boolean>()
 
 
     var getAcronyms = GetAcronyms()
@@ -20,9 +21,11 @@ class AcronymsViewModel : ViewModel() {
         fullforms: String
     ) {
         viewModelScope.launch {
+            isLoading.postValue(true)
             val result = getAcronyms(acronym, fullforms)
             if (!result.isNullOrEmpty()){
                 acronyms.value = result[0].fullForms
+                isLoading.postValue(false)
 
             }
 

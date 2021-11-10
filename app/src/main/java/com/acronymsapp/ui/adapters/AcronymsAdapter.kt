@@ -36,10 +36,10 @@ class AcronymsAdapter(private val list: List<LFS>) :
         }
     }
     private fun getItem(position: Int): LFS {
-        return lfs[position]
+        return list[position]
     }
     override fun getItemCount(): Int {
-        return lfs.size
+        return list.size
     }
 
 
