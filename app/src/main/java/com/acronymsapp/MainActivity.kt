@@ -1,11 +1,13 @@
 package com.acronymsapp
 
+import android.annotation.SuppressLint
 import android.content.Intent
 import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.View
+import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.core.view.isVisible
 import androidx.lifecycle.Observer
@@ -23,19 +25,23 @@ class MainActivity : AppCompatActivity(), OnAbbreviationAdapterListener {
 
     private val acronymsViewModel: AcronymsViewModel by viewModels()
 
+    @SuppressLint("SetTextI18n")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        linearLayoutManager = LinearLayoutManager(this)
 
+        linearLayoutManager = LinearLayoutManager(this)
+        binding.tvTotalAcronyms.isVisible = false
         binding.btnSearch.setOnClickListener(searchAcronyms)
 
+        acronymsViewModel.acronyms.observe(this, Observer { response ->
 
-        acronymsViewModel.acronyms.observe(this, Observer {
-                response ->
-            response?.let { setupRecyclerview(it) }
-
+            response?.let {
+                binding.tvTotalAcronyms.isVisible = true
+                binding.tvTotalAcronyms.text = it.size.toString() + " results"
+                setupRecyclerview(it)
+            }
         })
         acronymsViewModel.isLoading.observe(this, Observer {
             binding.progress.isVisible = it
@@ -44,16 +50,26 @@ class MainActivity : AppCompatActivity(), OnAbbreviationAdapterListener {
     }
 
     private fun setupRecyclerview(list: List<LFS>) {
-        binding.listAcronyms.layoutManager = linearLayoutManager
+        Log.i("AcronymRecyclerView", list.toString())
 
+        binding.listAcronyms.layoutManager = linearLayoutManager
         mAdapter = AcronymsAdapter(list)
         binding.listAcronyms.adapter = mAdapter
 
 
     }
 
-    val searchAcronyms =  View.OnClickListener(){
-        acronymsViewModel.onCreate(binding.edAcronym.text.toString(),binding.edAcronym.text.toString())
+    val searchAcronyms = View.OnClickListener {
+        val acronym = binding.edAcronym.text.toString()
+        if(acronym !=""){
+            acronymsViewModel.onCreate(
+                acronym,
+                acronym
+            )
+        }else {
+            Toast.makeText(this, "Enter Acronyms", Toast.LENGTH_SHORT).show()
+        }
+     
 
     }
 

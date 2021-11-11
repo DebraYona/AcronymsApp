@@ -13,7 +13,6 @@ class AcronymsAdapter(private val list: List<LFS>) :
     RecyclerView.Adapter<AcronymsAdapter.ViewHolder>() {
 
     private val TAG = AcronymsAdapter::class.java.name
-    private val lfs: MutableList<LFS> = ArrayList()
 
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
