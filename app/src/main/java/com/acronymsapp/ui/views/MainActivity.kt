@@ -1,8 +1,6 @@
-package com.acronymsapp
+package com.acronymsapp.ui.views
 
 import android.annotation.SuppressLint
-import android.content.Intent
-import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log

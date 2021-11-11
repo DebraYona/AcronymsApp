@@ -2,7 +2,7 @@
     <string name="app_name">Acronyms App</string>
 
     <string name="title_init">Enter an acronym or initialism</string>
-
+    <string name="since">Since:</string>
 
 
 </resources>

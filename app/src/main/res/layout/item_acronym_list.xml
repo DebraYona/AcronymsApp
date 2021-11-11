@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 
-<androidx.constraintlayout.widget.ConstraintLayout android:layout_height="@dimen/album_card_width_size"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:tools="http://schemas.android.com/tools"
+    android:layout_height="@dimen/album_card_width_size"
     android:layout_width="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
 
@@ -23,13 +24,23 @@
 
     <TextView
         android:id="@+id/tvSince"
-        android:layout_height="wrap_content"
         android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="2dp"
         android:text="@{lfs.since}"
-        app:layout_constraintStart_toStartOf="@+id/tv_abbreviation"
+        android:textSize="12sp"
+        app:layout_constraintStart_toEndOf="@+id/textView"
         app:layout_constraintTop_toBottomOf="@+id/tv_abbreviation" />
 
-
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:text="@string/since"
+        android:textSize="12sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_abbreviation" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
