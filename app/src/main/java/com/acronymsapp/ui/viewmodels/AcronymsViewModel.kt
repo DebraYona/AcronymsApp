@@ -4,17 +4,15 @@ import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.acronymsapp.data.domain.GetAcronyms
-import com.acronymsapp.data.model.AcronymsResponse
+import com.acronymsapp.data.domain.GetAcronymsUseCase
 import com.acronymsapp.data.model.LFS
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
-import retrofit2.Response
 import javax.inject.Inject
 
 @HiltViewModel
 class AcronymsViewModel @Inject constructor(
-    private val getAcronyms: GetAcronyms
+    private val getAcronymsUseCase: GetAcronymsUseCase
 ): ViewModel() {
     var acronyms: MutableLiveData<List<LFS>?> = MutableLiveData()
     var isLoading = MutableLiveData<Boolean>()
@@ -25,7 +23,7 @@ class AcronymsViewModel @Inject constructor(
     ) {
         viewModelScope.launch {
             isLoading.postValue(true)
-            val result = getAcronyms(acronym, fullforms)
+            val result = getAcronymsUseCase(acronym, fullforms)
             Log.i("Request result", result.toString())
 
             if (!result.isNullOrEmpty()) {

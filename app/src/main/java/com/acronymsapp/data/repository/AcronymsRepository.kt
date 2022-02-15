@@ -7,7 +7,7 @@ import javax.inject.Inject
 
 class AcronymsRepository @Inject constructor(private val api: AcronymsService) {
 
-    suspend fun getAllAcronyms(
+    suspend fun getAllAcronymsRepository(
         acronym: String,
         fullforms: String
     ): List<AcronymsResponse> {
