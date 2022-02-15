@@ -7,15 +7,17 @@ import androidx.lifecycle.viewModelScope
 import com.acronymsapp.data.domain.GetAcronyms
 import com.acronymsapp.data.model.AcronymsResponse
 import com.acronymsapp.data.model.LFS
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import retrofit2.Response
+import javax.inject.Inject
 
-class AcronymsViewModel : ViewModel() {
+@HiltViewModel
+class AcronymsViewModel @Inject constructor(
+    private val getAcronyms: GetAcronyms
+): ViewModel() {
     var acronyms: MutableLiveData<List<LFS>?> = MutableLiveData()
     var isLoading = MutableLiveData<Boolean>()
-
-
-    var getAcronyms = GetAcronyms()
 
     fun onCreate(
         acronym: String,

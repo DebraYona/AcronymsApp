@@ -1,17 +1,12 @@
 package com.acronymsapp.data.network
 
-import com.acronymsapp.api.RetrofitInstance
 import com.acronymsapp.data.model.AcronymsResponse
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
-import okhttp3.OkHttpClient
-import okhttp3.logging.HttpLoggingInterceptor
-import retrofit2.Response
-import retrofit2.http.Query
+import javax.inject.Inject
 
-class AcronymsService {
+class AcronymsService @Inject constructor(private  val  api:AcronymsApiClient){
 
-    private val retrofit = RetrofitInstance.getRetrofit()
 
     suspend fun getAcronyms(
         acronym: String,
@@ -19,7 +14,7 @@ class AcronymsService {
     ): List<AcronymsResponse> {
         return withContext(Dispatchers.IO){
             val response =
-                retrofit.create(AcronymsApiClient::class.java).getAcronyms(acronym, fullforms)
+                api.getAcronyms(acronym, fullforms)
             response.body() ?: emptyList()
         }
 

@@ -15,7 +15,9 @@ import com.acronymsapp.databinding.ActivityMainBinding
 import com.acronymsapp.ui.adapters.AcronymsAdapter
 import com.acronymsapp.ui.adapters.OnAbbreviationAdapterListener
 import com.acronymsapp.ui.viewmodels.AcronymsViewModel
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class MainActivity : AppCompatActivity(), OnAbbreviationAdapterListener {
     private lateinit var binding: ActivityMainBinding
     private lateinit var mAdapter: AcronymsAdapter
