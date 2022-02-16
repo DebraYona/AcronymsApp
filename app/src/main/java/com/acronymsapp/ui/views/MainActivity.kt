@@ -1,12 +1,12 @@
 package com.acronymsapp.ui.views
 
 import android.annotation.SuppressLint
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.View
 import android.widget.Toast
 import androidx.activity.viewModels
+import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.isVisible
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -46,7 +46,6 @@ class MainActivity : AppCompatActivity(), OnAbbreviationAdapterListener {
         acronymsViewModel.isLoading.observe(this, Observer {
             binding.progress.isVisible = it
         })
-
     }
 
     private fun setupRecyclerview(list: List<LFS>) {
@@ -55,23 +54,18 @@ class MainActivity : AppCompatActivity(), OnAbbreviationAdapterListener {
         binding.listAcronyms.layoutManager = linearLayoutManager
         mAdapter = AcronymsAdapter(list)
         binding.listAcronyms.adapter = mAdapter
-
-
     }
 
     val searchAcronyms = View.OnClickListener {
         val acronym = binding.edAcronym.text.toString()
-        if(acronym !=""){
+        if (acronym != "") {
             acronymsViewModel.onCreate(
                 acronym,
                 acronym
             )
-        }else {
+        } else {
             Toast.makeText(this, "Enter Acronyms", Toast.LENGTH_SHORT).show()
         }
-     
 
     }
-
-
 }

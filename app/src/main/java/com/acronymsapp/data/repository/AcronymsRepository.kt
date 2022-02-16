@@ -2,7 +2,6 @@ package com.acronymsapp.data.repository
 
 import com.acronymsapp.data.model.AcronymsResponse
 import com.acronymsapp.data.network.AcronymsService
-import retrofit2.Response
 import javax.inject.Inject
 
 class AcronymsRepository @Inject constructor(private val api: AcronymsService) {

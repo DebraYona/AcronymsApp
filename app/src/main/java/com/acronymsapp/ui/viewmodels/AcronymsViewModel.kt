@@ -13,7 +13,7 @@ import javax.inject.Inject
 @HiltViewModel
 class AcronymsViewModel @Inject constructor(
     private val getAcronymsUseCase: GetAcronymsUseCase
-): ViewModel() {
+) : ViewModel() {
     var acronyms: MutableLiveData<List<LFS>?> = MutableLiveData()
     var isLoading = MutableLiveData<Boolean>()
 
@@ -31,9 +31,7 @@ class AcronymsViewModel @Inject constructor(
             } else {
                 acronyms.value = emptyList()
             }
-            
             isLoading.postValue(false)
-
         }
     }
 }

@@ -5,20 +5,16 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import javax.inject.Inject
 
-class AcronymsService @Inject constructor(private  val  api:AcronymsApiClient){
-
+class AcronymsService @Inject constructor(private val api: AcronymsApiClient) {
 
     suspend fun getAcronyms(
         acronym: String,
         fullforms: String
     ): List<AcronymsResponse> {
-        return withContext(Dispatchers.IO){
+        return withContext(Dispatchers.IO) {
             val response =
                 api.getAcronyms(acronym, fullforms)
             response.body() ?: emptyList()
         }
-
     }
-
-
 }
